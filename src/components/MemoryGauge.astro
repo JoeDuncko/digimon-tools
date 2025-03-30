@@ -28,8 +28,9 @@ import MemoryGaugeNumber from './MemoryGaugeNumber.astro';
     </div>
 
     <div class="memory-gauge-player-sides">
-        <div class="memory-gauge-player-side">Player</div>
-        <div class="memory-gauge-player-side">Opponent</div>
+        <div class="memory-gauge-label">Player's Memory</div>
+        <div class="memory-gauge-label">Memory Gauge</div>
+        <div class="memory-gauge-label">Opponent's Memory</div>
     </div>
 </div>
 
@@ -54,7 +55,7 @@ import MemoryGaugeNumber from './MemoryGaugeNumber.astro';
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-around;
         gap: 1rem;
         width: 100%;
     }
@@ -66,5 +67,10 @@ import MemoryGaugeNumber from './MemoryGaugeNumber.astro';
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .memory-gauge-label {
+        font-size: 0.9rem;
+        color: #666;
     }
 </style>
