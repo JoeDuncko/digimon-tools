@@ -1,0 +1,52 @@
+<div class="breeding-area">
+    <div class="breeding-area-title">Breeding Area</div>
+    <div class="breeding-area-content">
+        <div class="digi-egg-deck">
+            <div class="deck-label">Digi-Egg Deck</div>
+        </div>
+        <div class="digi-egg-space">
+            <div class="space-label">Digi-Egg Space</div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .breeding-area {
+        border: 1px solid black;
+        padding: 0.5rem;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .breeding-area-title {
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .breeding-area-content {
+        display: flex;
+        gap: 0.5rem;
+        flex: 1;
+        justify-content: center;
+    }
+
+    .digi-egg-deck,
+    .digi-egg-space {
+        border: 1px solid #666;
+        border-radius: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 2.5in;
+        height: 3.5in;
+    }
+
+    .deck-label,
+    .space-label {
+        font-size: 0.9rem;
+        color: #666;
+    }
+</style>
