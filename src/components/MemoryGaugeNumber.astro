@@ -1,0 +1,37 @@
+---
+interface Props {
+    value: number;
+    isPlayer?: boolean;
+    isOpponent?: boolean;
+}
+
+const { value, isPlayer, isOpponent } = Astro.props;
+---
+
+<div class={`memory-gauge-number ${isPlayer ? 'player' : ''} ${isOpponent ? 'opponent' : ''}`}>
+    {value}
+</div>
+
+<style>
+    .memory-gauge-number {
+        font-size: 1.5rem;
+        font-weight: bold;
+        border: 1px solid black;
+        padding: 0.5rem;
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .memory-gauge-number.player {
+        background-color: white;
+        color: black;
+    }
+
+    .memory-gauge-number.opponent {
+        background-color: black;
+        color: white;
+        transform: rotate(180deg);
+    }
+</style>

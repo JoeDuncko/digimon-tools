@@ -1,0 +1,71 @@
+---
+import MemoryGaugeNumber from './MemoryGaugeNumber.astro';
+---
+
+<div class="memory-gauge">
+    <div class="memory-gauge-line">
+        <MemoryGaugeNumber value={10} isPlayer={true} />
+        <MemoryGaugeNumber value={9} isPlayer={true} />
+        <MemoryGaugeNumber value={8} isPlayer={true} />
+        <MemoryGaugeNumber value={7} isPlayer={true} />
+        <MemoryGaugeNumber value={6} isPlayer={true} />
+        <MemoryGaugeNumber value={5} isPlayer={true} />
+        <MemoryGaugeNumber value={4} isPlayer={true} />
+        <MemoryGaugeNumber value={3} isPlayer={true} />
+        <MemoryGaugeNumber value={2} isPlayer={true} />
+        <MemoryGaugeNumber value={1} isPlayer={true} />
+        <MemoryGaugeNumber value={0} />
+        <MemoryGaugeNumber value={1} isOpponent={true} />
+        <MemoryGaugeNumber value={2} isOpponent={true} />
+        <MemoryGaugeNumber value={3} isOpponent={true} />
+        <MemoryGaugeNumber value={4} isOpponent={true} />
+        <MemoryGaugeNumber value={5} isOpponent={true} />
+        <MemoryGaugeNumber value={6} isOpponent={true} />
+        <MemoryGaugeNumber value={7} isOpponent={true} />
+        <MemoryGaugeNumber value={8} isOpponent={true} />
+        <MemoryGaugeNumber value={9} isOpponent={true} />
+        <MemoryGaugeNumber value={10} isOpponent={true} />
+    </div>
+
+    <div class="memory-gauge-player-sides">
+        <div class="memory-gauge-player-side">Player</div>
+        <div class="memory-gauge-player-side">Opponent</div>
+    </div>
+</div>
+
+<style>
+    .memory-gauge {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .memory-gauge-line {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .memory-gauge-player-sides {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .memory-gauge-player-side {
+        font-size: 1.2rem;
+        font-weight: bold;
+        border: 1px solid black;
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
