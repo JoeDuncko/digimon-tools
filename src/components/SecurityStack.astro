@@ -1,37 +1,21 @@
 <div class="security-stack">
-    <div class="security-top-card">
-        <div class="card-label">Security Stack</div>
-    </div>
-    <div class="security-bottom-card"></div>
-    <div class="security-bottom-card"></div>
-    <div class="security-bottom-card"></div>
-    <div class="security-bottom-card"></div>
+    <div class="space-label">Security Stack</div>
 </div>
 
 <style>
     .security-stack {
-        position: relative;
-        left: -1.5in;
+        border: 1px solid black;
+        width: 3.5in;
+        height: 2.5in;
+        border-radius: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
-    .security-top-card {
-        border: 1px solid black;
-        padding: 1rem;
-        border-radius: 0 1rem 1rem 0;
-        height: calc(2.5vw * 8.5); /* This will be 2.5" when printed */
-        width: calc(3.5vw * 8.5); /* This will be 3.5" when printed */
-        background-color: white;
-        z-index: 0;
-    }
-
-    .security-bottom-card {
-        border: 1px solid black;
-        padding: 1rem;
-        border-radius: 0 1rem 1rem 0;
-        height: calc(2.5vw * 8.5 / 10); /* This will be 2.5" when printed */
-        width: calc(3.5vw * 8.5); /* This will be 3.5" when printed */
-        background-color: white;
-        margin-top: -30px;
-        z-index: 1;
+    .space-label {
+        font-size: 0.9rem;
+        color: #666;
     }
 </style>
