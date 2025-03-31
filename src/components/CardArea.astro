@@ -1,0 +1,38 @@
+---
+interface Props {
+    label: string;
+    width?: string;
+    height?: string;
+    orientation?: 'portrait' | 'landscape';
+}
+
+const { label, width, height, orientation = 'portrait' } = Astro.props;
+
+const defaultWidth = orientation === 'portrait' ? '2.5in' : '3.5in';
+const defaultHeight = orientation === 'portrait' ? '3.5in' : '2.5in';
+---
+
+<div
+    class="card-area"
+    style={`--width: ${width || defaultWidth}; --height: ${height || defaultHeight};`}
+>
+    <div class="space-label">{label}</div>
+</div>
+
+<style>
+    .card-area {
+        border: 1px solid black;
+        width: var(--width);
+        height: var(--height);
+        border-radius: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .space-label {
+        font-size: 0.9rem;
+        color: #666;
+    }
+</style>
