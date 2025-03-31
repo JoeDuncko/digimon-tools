@@ -2,4 +2,44 @@
 import CardArea from './CardArea.astro';
 ---
 
-<CardArea label="Security Stack" orientation="landscape" />
+<div class="security-stack-container">
+    <CardArea label="Security Stack" orientation="landscape" />
+    <CardArea label="Security Stack" orientation="landscape" />
+    <CardArea label="Security Stack" orientation="landscape" />
+    <CardArea label="Security Stack" orientation="landscape" />
+    <CardArea label="Security Stack" orientation="landscape" />
+</div>
+
+<style>
+    .security-stack-container {
+        position: relative;
+        width: 3.5in;
+        height: 2.5in;
+    }
+
+    .security-stack-container :global(.card-area) {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .security-stack-container :global(.card-area:nth-child(1)) {
+        transform: translateY(0.4in);
+    }
+
+    .security-stack-container :global(.card-area:nth-child(2)) {
+        transform: translateY(0.3in);
+    }
+
+    .security-stack-container :global(.card-area:nth-child(3)) {
+        transform: translateY(0.2in);
+    }
+
+    .security-stack-container :global(.card-area:nth-child(4)) {
+        transform: translateY(0.1in);
+    }
+
+    .security-stack-container :global(.card-area:nth-child(5)) {
+        transform: translateY(0);
+    }
+</style>
