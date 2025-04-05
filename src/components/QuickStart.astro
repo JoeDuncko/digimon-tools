@@ -1,33 +1,46 @@
 <div id="container">
     <h1>Digimon Card Game Quick Start Guide</h1>
 
-    <h2>The Four Types of Cards</h2>
-
-    <h3>Digimon Cards</h3>
-    <ul>
-        <li>You pay memory costs to play or evolve these cards.</li>
-        <li>They can also make attacks.</li>
-    </ul>
-
-    <h3>Digi-Egg Cards</h3>
-    <ul>
-        <li>Digi-Egg decks can contain up to five cards.</li>
-        <li>Digi-Egg cards can be hatched or digivolved from the breeding area.</li>
-    </ul>
-
-    <h3>Tamer Cards</h3>
-    <ul>
-        <li>Once played, Tamers stay on the field and their effects remain active.</li>
-    </ul>
-
-    <h3>Option Cards</h3>
-    <ul>
-        <li>
-            To play an Option card, you must have a Digimon or Tamer on the field of the same color.
-            The breeding area counts.
-        </li>
-        <li>Option cards are sent to the trash after use, unless stated otherwise.</li>
-    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">The Four Types of Cards</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    Digimon Cards
+                    <ul>
+                        <li>Played or evolved using memory. They can attack.</li>
+                    </ul>
+                </td>
+                <td>
+                    Digi-Egg Cards
+                    <ul>
+                        <li>Digi-Egg decks can contain up to five cards.</li>
+                        <li>Digi-Egg cards can be hatched or digivolved from the breeding area.</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Tamer Cards
+                    <ul>
+                        <li>
+                            Once played, Tamers stay on the field and their effects remain active.
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    Option Cards
+                    <ul>
+                        <li>Require a same-color Digimon or Tamer in play to use.</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
     <h3>Deck Construction</h3>
     <ul>
@@ -53,28 +66,14 @@
     <h3>The Field</h3>
     <ul>
         <li><strong>Memory Gauge:</strong> Track and pay memory costs.</li>
-        <li><strong>Security Stack:</strong> Stack of 5 cards at the start of the game.</li>
+        <li><strong>Security Stack:</strong> 5 cards; when it's empty, you're vulnerable.</li>
+        <li><strong>Battle Area:</strong> Where Digimon and Tamers go to act.</li>
+        <li><strong>Deck Zone:</strong> Your main 50-card deck.</li>
+        <li><strong>Trash:</strong> Where deleted cards go.</li>
+        <li><strong>Digi-Egg Deck:</strong> Up to 5 Digi-Eggs.</li>
         <li>
-            <strong>Battle Area:</strong> Area where you play Digimon and Tamers to do battle.
-        </li>
-        <li><strong>Deck Zone:</strong> Your 50-card deck.</li>
-        <li><strong>Trash:</strong> Deleted or trashed cards go here.</li>
-        <li><strong>Digi-Egg Deck Zone:</strong> Up to 5 Digi-Eggs, placed here.</li>
-        <li>
-            <strong>Breeding Area:</strong> Where you hatch Digi-Eggs and digivolve them before moving
-            them to the battle area.
-        </li>
-    </ul>
-
-    <h3>Breeding Area Rules</h3>
-    <ul>
-        <li>
-            Digimon in the breeding area are safe — they cannot be attacked or affected by effects.
-        </li>
-        <li>Digimon effects do not activate while in the breeding area.</li>
-        <li>
-            You may draw when you digivolve in the breeding area (this is a game rule, not an
-            effect).
+            <strong>Breeding Area:</strong> Safe zone. Digimon here can't attack or be affected. Effects
+            don’t trigger here, but you still draw when digivolving.
         </li>
     </ul>
 
@@ -180,8 +179,8 @@
             it instead.
         </li>
         <li>
-            <strong>Piercing:</strong> When this Digimon attacks and deletes a blocking Digimon, it also
-            performs a security check.
+            <strong>Piercing:</strong> When this Digimon attacks and deletes a Digimon, it also performs
+            a security check.
         </li>
         <li><strong>Rush:</strong> This Digimon can attack the turn it is played.</li>
         <li>
@@ -201,5 +200,39 @@
     #container {
         font-family: 'Arial', sans-serif;
         margin: 1rem;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    table th,
+    table td {
+        border: 1px solid #ddd;
+        padding: 4px;
+    }
+
+    table ul {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    @media print {
+        #container {
+            margin: 0px;
+            font-size: 0.8rem;
+        }
+
+        h3,
+        h2 {
+            page-break-after: avoid;
+            page-break-inside: avoid;
+        }
+
+        ul,
+        ol {
+            page-break-inside: avoid;
+        }
     }
 </style>
