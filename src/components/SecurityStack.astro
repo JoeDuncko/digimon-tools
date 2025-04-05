@@ -3,11 +3,11 @@ import CardArea from './CardArea.astro';
 ---
 
 <div class="security-stack-container">
-    <CardArea label="Security Stack" orientation="landscape" />
-    <CardArea label="Security Stack" orientation="landscape" />
-    <CardArea label="Security Stack" orientation="landscape" />
-    <CardArea label="Security Stack" orientation="landscape" />
-    <CardArea label="Security Stack" orientation="landscape" />
+    <CardArea label="Security Stack" orientation="landscape" labelPosition="right" />
+    <CardArea label="Security Stack" orientation="landscape" labelPosition="right" />
+    <CardArea label="Security Stack" orientation="landscape" labelPosition="right" />
+    <CardArea label="Security Stack" orientation="landscape" labelPosition="right" />
+    <CardArea label="Security Stack" orientation="landscape" labelPosition="right" />
 </div>
 
 <style>
@@ -15,6 +15,7 @@ import CardArea from './CardArea.astro';
         position: relative;
         width: 3.5in;
         height: 2.5in;
+        left: -1.75in;
     }
 
     .security-stack-container :global(.card-area) {

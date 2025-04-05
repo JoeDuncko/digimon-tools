@@ -5,8 +5,8 @@ import CardArea from './CardArea.astro';
 <div class="breeding-area">
     <div class="breeding-area-title">Breeding Area</div>
     <div class="breeding-area-content">
-        <CardArea label="Digi-Egg Deck" />
-        <CardArea label="Digi-Egg Space" />
+        <CardArea label="Digi-Egg Deck" labelPosition="top" />
+        <CardArea label="Digi-Egg Space" labelPosition="top" />
     </div>
 </div>
 
@@ -18,6 +18,8 @@ import CardArea from './CardArea.astro';
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+        position: relative;
+        top: 2in;
     }
 
     .breeding-area-title {

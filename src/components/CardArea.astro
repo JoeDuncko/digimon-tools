@@ -4,36 +4,77 @@ interface Props {
     width?: string;
     height?: string;
     orientation?: 'portrait' | 'landscape';
+    labelPosition?: 'top' | 'bottom' | 'left' | 'right';
 }
 
-const { label, width, height, orientation = 'portrait' } = Astro.props;
+const { label, width, height, orientation = 'portrait', labelPosition = 'center' } = Astro.props;
 
 const defaultWidth = orientation === 'portrait' ? '2.5in' : '3.5in';
 const defaultHeight = orientation === 'portrait' ? '3.5in' : '2.5in';
 ---
 
 <div
-    class="card-area"
+    class={`card-area ${labelPosition === 'left' || labelPosition === 'right' ? 'row' : ''}`}
     style={`--width: ${width || defaultWidth}; --height: ${height || defaultHeight};`}
 >
-    <div class="space-label">{label}</div>
+    {labelPosition === 'center' && <div class="space-label">{label}</div>}
+    {
+        labelPosition === 'top' && (
+            <>
+                <div class="space-label">{label}</div>
+                <div class="space-label" />
+            </>
+        )
+    }
+    {
+        labelPosition === 'bottom' && (
+            <>
+                <div class="space-label" />
+                <div class="space-label">{label}</div>
+            </>
+        )
+    }
+    {
+        labelPosition === 'left' && (
+            <>
+                <div class="space-label">{label}</div>
+                <div class="space-label" />
+            </>
+        )
+    }
+    {
+        labelPosition === 'right' && (
+            <>
+                <div class="space-label" />
+                <div class="space-label">{label}</div>
+            </>
+        )
+    }
+
+    <style>
+        .card-area {
+            border: 1px solid black;
+            width: var(--width);
+            height: var(--height);
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+        }
+
+        .row {
+            flex-direction: row;
+        }
+
+        .space-label {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
 </div>
-
-<style>
-    .card-area {
-        border: 1px solid black;
-        width: var(--width);
-        height: var(--height);
-        border-radius: 0.5rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background-color: white;
-    }
-
-    .space-label {
-        font-size: 0.9rem;
-        color: #666;
-    }
-</style>
