@@ -9,7 +9,9 @@ import SecurityStack from './SecurityStack.astro';
     <div class="playmat-container">
         <MemoryGauge />
 
-        <div class="playmat-grid">
+        <div class="playmat-flex">
+            <div class="battle-area-label">Battle Area</div>
+
             <div class="left-column">
                 <SecurityStack />
 
@@ -42,11 +44,19 @@ import SecurityStack from './SecurityStack.astro';
         gap: 1rem;
     }
 
-    .playmat-grid {
+    .playmat-flex {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         gap: 1rem;
+        position: relative;
+    }
+
+    .battle-area-label {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        color: #666;
     }
 
     .left-column {
