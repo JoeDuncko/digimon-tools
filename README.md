@@ -1,48 +1,96 @@
-# Astro Starter Kit: Basics
+# Digimon Tools
+
+Printable tools and references for the 2020 Digimon Card Game.
+
+The site is built with [Astro](https://astro.build/) and is published at
+[digimon.tools](https://digimon.tools).
+
+## What's Included
+
+- **Home** (`/`) - Links to the available tools.
+- **Printable playmat** (`/playmat`) - A browser-printable Digimon Card Game
+  playmat with memory gauge, battle area, security stack, breeding area, deck,
+  and trash zones.
+- **Printable quick start guide** (`/quickstart`) - A condensed rules reference
+  for new players covering setup, turn flow, card types, victory conditions, and
+  common keywords.
+
+## Getting Started
+
+Install dependencies:
 
 ```sh
-npm create astro@latest -- --template basics
+npm install
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+Start the local development server:
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+```sh
+npm run dev
+```
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+Astro serves the app at `http://localhost:4321` by default.
 
-## 🚀 Project Structure
+## Commands
 
-Inside of your Astro project, you'll see the following folders and files:
+Run these from the repository root:
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the local Astro development server. |
+| `npm run build` | Build the static production site into `dist/`. |
+| `npm run preview` | Preview the production build locally. |
+| `npm run astro -- --help` | Show Astro CLI help. |
+
+## Project Structure
 
 ```text
 /
 ├── public/
-│   └── favicon.svg
+│   └── favicon.png
 ├── src/
+│   ├── assets/
+│   │   └── digimonToolsLogo.png
+│   ├── components/
+│   │   ├── Playmat.astro
+│   │   └── QuickStart.astro
 │   ├── layouts/
 │   │   └── Layout.astro
 │   └── pages/
-│       └── index.astro
+│       ├── index.astro
+│       ├── playmat.astro
+│       └── quickstart.astro
+├── astro.config.mjs
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+Astro uses file-based routing, so new files in `src/pages/` become new routes.
+Most page content lives in `src/components/`, with `src/layouts/Layout.astro`
+providing shared document metadata and analytics.
 
-## 🧞 Commands
+## Printing
 
-All commands are run from the root of the project, from a terminal:
+The playmat and quick start guide are designed to be printed directly from the
+browser. For best results:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- Open the page you want to print.
+- Use your browser's print dialog.
+- Disable browser headers and footers if they interfere with the layout.
+- Adjust scale or orientation as needed for your printer and paper size.
 
-## 👀 Want to learn more?
+## Deployment
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+This is a static Astro site. A production build can be generated with:
+
+```sh
+npm run build
+```
+
+The generated `dist/` directory can be deployed to any static host. The canonical
+site URL is configured in `astro.config.mjs`.
+
+## Disclaimer
+
+Digimon is owned by Akiyoshi Hongo and Toei Animation. This project is an
+unofficial fan-made utility and is not affiliated with or endorsed by the rights
+holders.
