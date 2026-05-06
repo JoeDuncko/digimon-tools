@@ -1,0 +1,196 @@
+---
+import { keywordMetadata, keywords } from '../data/digimonKeywords.mjs';
+---
+
+<section class="keywords-page">
+    <header class="hero">
+        <a class="back-link" href="/">Digimon Tools</a>
+        <h1>{keywordMetadata.title}</h1>
+    </header>
+
+    <div class="tools">
+        <label for="keyword-search">Search keywords</label>
+        <input
+            id="keyword-search"
+            type="search"
+            placeholder="Try Collision, Partition, Security Attack, highest DP..."
+            autocomplete="off"
+        />
+        <p id="keyword-count" aria-live="polite">{keywords.length} keywords</p>
+    </div>
+
+    <div class="keywords-list" id="keywords-list">
+        {
+            keywords.map(keyword => (
+                <article
+                    class="keyword"
+                    data-keyword
+                    data-search={[keyword.name, keyword.definition, ...(keyword.aliases ?? [])]
+                        .join(' ')
+                        .toLowerCase()}
+                >
+                    <div class="keyword-heading">
+                        <h2>{keyword.name}</h2>
+                    </div>
+                    <p>{keyword.definition}</p>
+                    {keyword.aliases?.length ? (
+                        <p class="aliases">
+                            Also matches: <span>{keyword.aliases.join(', ')}</span>
+                        </p>
+                    ) : null}
+                </article>
+            ))
+        }
+    </div>
+
+    <p class="empty-state" id="empty-state" hidden>No keywords match that search.</p>
+
+    <footer class="source-note">
+        Source: <a href={keywordMetadata.sourceUrl} target="_blank" rel="noopener noreferrer"
+            >{keywordMetadata.sourceName}</a
+        >, {keywordMetadata.sourceSection}. Source date: <time
+            datetime={keywordMetadata.sourcePublished}>{keywordMetadata.sourcePublished}</time
+        >. Last checked: <time datetime={keywordMetadata.lastChecked}
+            >{keywordMetadata.lastChecked}</time
+        >.
+    </footer>
+</section>
+
+<script>
+    const searchInput = document.querySelector('#keyword-search');
+    const count = document.querySelector('#keyword-count');
+    const emptyState = document.querySelector('#empty-state');
+    const keywordCards = Array.from(document.querySelectorAll('[data-keyword]'));
+
+    const normalize = value =>
+        value
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, ' ')
+            .trim();
+
+    const updateKeywords = () => {
+        const tokens = normalize(searchInput.value).split(/\s+/).filter(Boolean);
+        let visibleCount = 0;
+
+        for (const card of keywordCards) {
+            const searchable = normalize(card.dataset.search ?? '');
+            const visible = tokens.every(token => searchable.includes(token));
+            card.hidden = !visible;
+            if (visible) visibleCount += 1;
+        }
+
+        count.textContent = `${visibleCount} ${visibleCount === 1 ? 'keyword' : 'keywords'}`;
+        emptyState.hidden = visibleCount !== 0;
+    };
+
+    searchInput.addEventListener('input', updateKeywords);
+</script>
+
+<style>
+    .keywords-page {
+        font-family: 'Arial', sans-serif;
+        margin: 0 auto;
+        max-width: 900px;
+        padding: 24px 16px 48px;
+    }
+
+    .hero {
+        border-bottom: 1px solid #d8dde5;
+        padding-bottom: 16px;
+    }
+
+    .back-link {
+        color: #305f9f;
+        font-size: 0.95rem;
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    .back-link:hover,
+    .source-note a:hover {
+        text-decoration: underline;
+    }
+
+    h1 {
+        font-size: 2rem;
+        line-height: 1;
+        margin: 20px 0 0;
+    }
+
+    .tools {
+        margin: 20px 0;
+    }
+
+    .tools label {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 6px;
+    }
+
+    .tools input {
+        border: 1px solid #b9c2cf;
+        font: inherit;
+        min-height: 44px;
+        min-width: 0;
+        padding: 10px 12px;
+        width: 100%;
+    }
+
+    .tools input:focus {
+        border-color: #1c5ea8;
+        box-shadow: 0 0 0 3px rgba(28, 94, 168, 0.16);
+        outline: none;
+    }
+
+    #keyword-count {
+        color: #5c6673;
+        margin: 8px 0 0;
+    }
+
+    .keywords-list {
+        display: grid;
+        gap: 12px;
+    }
+
+    .keyword {
+        border: 1px solid #d8dde5;
+        padding: 16px;
+    }
+
+    .keyword h2 {
+        font-size: 1.15rem;
+        line-height: 1.25;
+        margin: 0;
+    }
+
+    .keyword p {
+        line-height: 1.55;
+        margin: 12px 0 0;
+    }
+
+    .aliases {
+        color: #5c6673;
+        font-size: 0.9rem;
+    }
+
+    .aliases span {
+        color: #303b47;
+    }
+
+    .empty-state {
+        border: 1px dashed #b9c2cf;
+        border-radius: 8px;
+        color: #5c6673;
+        padding: 28px;
+        text-align: center;
+    }
+
+    .source-note {
+        border-top: 1px solid #d8dde5;
+        color: #5c6673;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        margin-top: 24px;
+        padding-top: 12px;
+    }
+</style>

@@ -14,6 +14,9 @@ The site is built with [Astro](https://astro.build/) and is published at
 - **Printable quick start guide** (`/quickstart`) - A condensed rules reference
   for new players covering setup, turn flow, card types, victory conditions, and
   common keywords.
+- **Keyword effect lookup** (`/keywords`) - A searchable reference for Digimon
+  Card Game keyword effects, with a plaintext markdown endpoint at
+  `/keywords.md`.
 
 ## Getting Started
 
@@ -35,12 +38,13 @@ Astro serves the app at `http://localhost:4321` by default.
 
 Run these from the repository root:
 
-| Command | Description |
-| --- | --- |
-| `npm run dev` | Start the local Astro development server. |
-| `npm run build` | Build the static production site into `dist/`. |
-| `npm run preview` | Preview the production build locally. |
-| `npm run astro -- --help` | Show Astro CLI help. |
+| Command                   | Description                                                     |
+| ------------------------- | --------------------------------------------------------------- |
+| `npm run dev`             | Start the local Astro development server.                       |
+| `npm test`                | Run Node tests for structured resource data and search helpers. |
+| `npm run build`           | Build the static production site into `dist/`.                  |
+| `npm run preview`         | Preview the production build locally.                           |
+| `npm run astro -- --help` | Show Astro CLI help.                                            |
 
 ## Project Structure
 
@@ -58,6 +62,8 @@ Run these from the repository root:
 │   │   └── Layout.astro
 │   └── pages/
 │       ├── index.astro
+│       ├── keywords.astro
+│       ├── keywords.md.ts
 │       ├── playmat.astro
 │       └── quickstart.astro
 ├── astro.config.mjs
