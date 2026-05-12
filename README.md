@@ -14,8 +14,8 @@ The site is built with [Astro](https://astro.build/) and is published at
 - **Printable quick start guide** (`/quickstart`) - A condensed rules reference
   for new players covering setup, turn flow, card types, victory conditions, and
   common keywords.
-- **Keyword effect lookup** (`/keywords`) - A searchable reference for Digimon
-  Card Game keyword effects, with a plaintext markdown endpoint at
+- **Keyword and rule lookup** (`/keywords`) - A searchable reference for Digimon
+  Card Game keyword effects and rule mechanics, with a plaintext markdown endpoint at
   `/keywords.md`.
 
 ## Getting Started

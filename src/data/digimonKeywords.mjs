@@ -1,11 +1,15 @@
 export const keywordMetadata = {
-    title: 'Digimon Card Game Keyword Effects',
+    title: 'Digimon Card Game Keyword and Rule Lookup',
     sourceName: 'Official Rule Manual Ver.5.0',
     sourceUrl: 'https://world.digimoncard.com/rule/pdf/manual.pdf?20260401=',
     sourcePublished: '2026-04-01',
-    lastChecked: '2026-05-06',
+    lastChecked: '2026-05-11',
     sourcePageUrl: 'https://world.digimoncard.com/rule/',
     sourceSection: 'Keyword Effects, pp. 46-47',
+    ruleQaSourceName: 'Official Rule Q&A',
+    ruleQaSourceUrl: 'https://world.digimoncard.com/rule/',
+    ruleQaSourceSection: 'Basic Rules and Keyword Effects',
+    ruleQaLastUpdated: '2026-05-08',
 };
 
 export const keywords = [
@@ -217,6 +221,12 @@ export const keywords = [
         aliases: ['Security A.', 'Security Attack', 'Security Attack +X', 'Security Attack -X'],
     },
     {
+        name: 'Training',
+        definition:
+            "By suspending this Digimon during your main phase, place your deck's top card as its bottom digivolution card. This can also activate in the breeding area.",
+        aliases: [],
+    },
+    {
         name: 'Use Req.《XX》',
         definition: 'Specified cards let you ignore color requirements.',
         aliases: ['Use Req.', 'Use Requirements'],
@@ -228,3 +238,25 @@ export const keywords = [
         aliases: [],
     },
 ];
+
+export const ruleMechanics = [
+    {
+        name: 'Assembly',
+        definition:
+            "When playing a Digimon with Assembly requirements, place the specified cards from your trash under it to reduce the play cost by the listed value.",
+        aliases: ['Assembly requirements'],
+    },
+    {
+        name: 'DigiXros',
+        definition:
+            'When playing a Digimon with DigiXros requirements, place specified cards from your hand and/or battle area under it to reduce the play cost by the listed value for each card placed.',
+        aliases: ['Digi-Xros', 'Xros', 'DigiXros requirements'],
+    },
+];
+
+const withCategory = (entries, category) => entries.map(entry => ({ ...entry, category }));
+
+export const keywordLookupEntries = [
+    ...withCategory(keywords, 'Keyword Effect'),
+    ...withCategory(ruleMechanics, 'Rule Mechanic'),
+].sort((a, b) => a.name.localeCompare(b.name));

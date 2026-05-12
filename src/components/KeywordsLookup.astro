@@ -1,5 +1,5 @@
 ---
-import { keywordMetadata, keywords } from '../data/digimonKeywords.mjs';
+import { keywordLookupEntries, keywordMetadata } from '../data/digimonKeywords.mjs';
 ---
 
 <section class="keywords-page">
@@ -9,28 +9,34 @@ import { keywordMetadata, keywords } from '../data/digimonKeywords.mjs';
     </header>
 
     <div class="tools">
-        <label for="keyword-search">Search keywords</label>
+        <label for="keyword-search">Search keywords and rule mechanics</label>
         <input
             id="keyword-search"
             type="search"
-            placeholder="Try Collision, Partition, Security Attack, highest DP..."
+            placeholder="Try DigiXros, Assembly, Collision, Security Attack..."
             autocomplete="off"
         />
-        <p id="keyword-count" aria-live="polite">{keywords.length} keywords</p>
+        <p id="keyword-count" aria-live="polite">{keywordLookupEntries.length} entries</p>
     </div>
 
     <div class="keywords-list" id="keywords-list">
         {
-            keywords.map(keyword => (
+            keywordLookupEntries.map(keyword => (
                 <article
                     class="keyword"
                     data-keyword
-                    data-search={[keyword.name, keyword.definition, ...(keyword.aliases ?? [])]
+                    data-search={[
+                        keyword.name,
+                        keyword.category,
+                        keyword.definition,
+                        ...(keyword.aliases ?? []),
+                    ]
                         .join(' ')
                         .toLowerCase()}
                 >
                     <div class="keyword-heading">
                         <h2>{keyword.name}</h2>
+                        <span>{keyword.category}</span>
                     </div>
                     <p>{keyword.definition}</p>
                     {keyword.aliases?.length ? (
@@ -43,13 +49,19 @@ import { keywordMetadata, keywords } from '../data/digimonKeywords.mjs';
         }
     </div>
 
-    <p class="empty-state" id="empty-state" hidden>No keywords match that search.</p>
+    <p class="empty-state" id="empty-state" hidden>No entries match that search.</p>
 
     <footer class="source-note">
         Source: <a href={keywordMetadata.sourceUrl} target="_blank" rel="noopener noreferrer"
             >{keywordMetadata.sourceName}</a
-        >, {keywordMetadata.sourceSection}. Source date: <time
+        >, {keywordMetadata.sourceSection}; <a
+            href={keywordMetadata.ruleQaSourceUrl}
+            target="_blank"
+            rel="noopener noreferrer">{keywordMetadata.ruleQaSourceName}</a
+        >, {keywordMetadata.ruleQaSourceSection}. Source date: <time
             datetime={keywordMetadata.sourcePublished}>{keywordMetadata.sourcePublished}</time
+        >. Rule Q&A updated: <time datetime={keywordMetadata.ruleQaLastUpdated}
+            >{keywordMetadata.ruleQaLastUpdated}</time
         >. Last checked: <time datetime={keywordMetadata.lastChecked}
             >{keywordMetadata.lastChecked}</time
         >.
@@ -79,7 +91,7 @@ import { keywordMetadata, keywords } from '../data/digimonKeywords.mjs';
             if (visible) visibleCount += 1;
         }
 
-        count.textContent = `${visibleCount} ${visibleCount === 1 ? 'keyword' : 'keywords'}`;
+        count.textContent = `${visibleCount} ${visibleCount === 1 ? 'entry' : 'entries'}`;
         emptyState.hidden = visibleCount !== 0;
     };
 
@@ -87,7 +99,14 @@ import { keywordMetadata, keywords } from '../data/digimonKeywords.mjs';
 </script>
 
 <style>
+    :global(body) {
+        background: #ffffff;
+        color: #202833;
+    }
+
     .keywords-page {
+        background: #ffffff;
+        color: #202833;
         font-family: 'Arial', sans-serif;
         margin: 0 auto;
         max-width: 900px;
@@ -161,6 +180,20 @@ import { keywordMetadata, keywords } from '../data/digimonKeywords.mjs';
         font-size: 1.15rem;
         line-height: 1.25;
         margin: 0;
+    }
+
+    .keyword-heading {
+        align-items: baseline;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .keyword-heading span {
+        color: #5c6673;
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
     }
 
     .keyword p {

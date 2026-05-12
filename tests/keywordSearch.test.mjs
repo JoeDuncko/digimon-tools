@@ -1,7 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { keywordMetadata, keywords } from '../src/data/digimonKeywords.mjs';
+import {
+    keywordLookupEntries,
+    keywordMetadata,
+    keywords,
+    ruleMechanics,
+} from '../src/data/digimonKeywords.mjs';
 import { searchKeywords } from '../src/utils/searchKeywords.mjs';
 
 test('keyword data includes official source metadata', () => {
@@ -22,25 +27,41 @@ test('keyword data is in alphabetical order', () => {
     );
 });
 
+test('keyword effect data includes the current official keyword effect list', () => {
+    assert.equal(keywords.some(keyword => keyword.name === 'Training'), true);
+});
+
+test('rules mechanics are kept separate from keyword effects', () => {
+    assert.equal(ruleMechanics.some(term => term.name === 'DigiXros'), true);
+    assert.equal(ruleMechanics.some(term => term.name === 'Assembly'), true);
+    assert.equal(keywords.some(keyword => keyword.name === 'DigiXros'), false);
+    assert.equal(keywords.some(keyword => keyword.name === 'Assembly'), false);
+});
+
 test('keyword search matches names, aliases, and definitions', () => {
-    assert.equal(searchKeywords(keywords, 'armor').at(0)?.name, 'Armor Purge');
+    assert.equal(searchKeywords(keywordLookupEntries, 'armor').at(0)?.name, 'Armor Purge');
     assert.equal(
-        searchKeywords(keywords, 'security attack').some(keyword =>
+        searchKeywords(keywordLookupEntries, 'security attack').some(keyword =>
             keyword.name.startsWith('Security A.')
         ),
         true
     );
-    assert.equal(searchKeywords(keywords, 'partition').at(0)?.name, 'Partition《XX & XX》');
-    assert.equal(searchKeywords(keywords, 'highest DP').at(0)?.name, 'Raid');
     assert.equal(
-        searchKeywords(keywords, 'blocker').some(keyword => keyword.name === 'Collision'),
+        searchKeywords(keywordLookupEntries, 'partition').at(0)?.name,
+        'Partition《XX & XX》'
+    );
+    assert.equal(searchKeywords(keywordLookupEntries, 'highest DP').at(0)?.name, 'Raid');
+    assert.equal(
+        searchKeywords(keywordLookupEntries, 'blocker').some(keyword => keyword.name === 'Collision'),
         true
     );
+    assert.equal(searchKeywords(keywordLookupEntries, 'xros').at(0)?.name, 'DigiXros');
+    assert.equal(searchKeywords(keywordLookupEntries, 'trash reduce cost').at(0)?.name, 'Assembly');
 });
 
 test('blank searches return every keyword in display order', () => {
     assert.deepEqual(
-        searchKeywords(keywords, '').map(keyword => keyword.name),
-        keywords.map(keyword => keyword.name)
+        searchKeywords(keywordLookupEntries, '').map(keyword => keyword.name),
+        keywordLookupEntries.map(keyword => keyword.name)
     );
 });
